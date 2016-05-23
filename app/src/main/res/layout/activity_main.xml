@@ -45,12 +45,26 @@
 
                 </com.example.angluswang.clock.TimeView>
 
-                <LinearLayout
+                <com.example.angluswang.clock.AlarmView
                     android:id="@+id/tabAlarm"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                </LinearLayout>
+
+                    <ListView
+                        android:id="@+id/lvAlarmList"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="0dp">
+
+                    </ListView>
+
+                    <Button
+                        android:text="@string/btAddAlarm"
+                        android:id="@+id/btnAddAlarm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.example.angluswang.clock.AlarmView>
 
                 <LinearLayout
                     android:id="@+id/tabTimer"
