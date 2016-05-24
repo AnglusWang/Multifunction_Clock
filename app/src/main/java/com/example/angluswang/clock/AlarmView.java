@@ -88,9 +88,13 @@ public class AlarmView extends LinearLayout {
 
     //删除所选的闹钟时间
     private void deleteAlarm(int position) {
+        AlarmDate ad = mAlarmAdapter.getItem(position);
 
-        mAlarmAdapter.remove(mAlarmAdapter.getItem(position));
+        mAlarmAdapter.remove(ad);
         saveAlarmList();
+
+        mAlarmManager.cancel(PendingIntent.getBroadcast(
+                getContext(), getId(), new Intent(getContext(), AlarmReceiver.class), 0));
     }
 
     private void addAlarm() {
@@ -113,12 +117,13 @@ public class AlarmView extends LinearLayout {
                     calendar.setTimeInMillis(calendar.getTimeInMillis() + 24*60*60*1000);
                 }
 
-                mAlarmAdapter.add(new AlarmDate(calendar.getTimeInMillis()));
+                AlarmDate ad = new AlarmDate(calendar.getTimeInMillis());
+                mAlarmAdapter.add(ad);
                 mAlarmManager.setRepeating(
                         AlarmManager.RTC_WAKEUP,
-                        calendar.getTimeInMillis(),
-                        5*60*1000,
-                        PendingIntent.getBroadcast(getContext(), 0,
+                        ad.getTime(),
+                        2*60*1000,
+                        PendingIntent.getBroadcast(getContext(), ad.getId(),
                                 new Intent(getContext(), AlarmReceiver.class), 0)
                 );
 
@@ -150,7 +155,8 @@ public class AlarmView extends LinearLayout {
     }
 
     private void readSaveAlarmList() {
-        SharedPreferences sp = getContext().getSharedPreferences(AlarmView.class.getName(), Context.MODE_PRIVATE);
+        SharedPreferences sp = getContext().
+                getSharedPreferences(AlarmView.class.getName(), Context.MODE_PRIVATE);
         String content = sp.getString(KEY_ALARM_LIST, null);
 
         if (content != null) {
@@ -193,6 +199,10 @@ public class AlarmView extends LinearLayout {
 
         public String getTimeTable() {
             return mTimeTable;
+        }
+
+        public int getId() {
+            return (int)(getTime()/1000/60);
         }
 
         @Override
