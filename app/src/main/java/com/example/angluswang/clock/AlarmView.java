@@ -40,6 +40,8 @@ public class AlarmView extends LinearLayout {
         mAlarmAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1);
         mLvAlarmList.setAdapter(mAlarmAdapter);
 
+        readSaveAlarmList();
+
 //        mAlarmAdapter.add(new AlarmDate(System.currentTimeMillis()));
 
         mBtnAddAlarm.setOnClickListener(new OnClickListener() {
@@ -90,6 +92,19 @@ public class AlarmView extends LinearLayout {
         System.out.println(content);
 
         editor.commit();
+    }
+
+    private void readSaveAlarmList() {
+        SharedPreferences sp = getContext().getSharedPreferences(AlarmView.class.getName(), Context.MODE_PRIVATE);
+        String content = sp.getString(KEY_ALARM_LIST, null);
+
+        if (content != null) {
+            String[] timeStrings = content.split(",");
+            for (String string: timeStrings
+                 ) {
+                mAlarmAdapter.add(new AlarmDate(Long.parseLong(string)));
+            }
+        }
     }
 
     private Button mBtnAddAlarm;
