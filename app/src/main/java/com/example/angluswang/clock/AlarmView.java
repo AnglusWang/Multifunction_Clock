@@ -2,6 +2,7 @@ package com.example.angluswang.clock;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -68,13 +69,33 @@ public class AlarmView extends LinearLayout {
                 }
 
                 mAlarmAdapter.add(new AlarmDate(calendar.getTimeInMillis()));
+                saveAlarmList();
             }
         }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
+    }
+
+    private void saveAlarmList() {
+        SharedPreferences.Editor editor = getContext().
+                getSharedPreferences(AlarmView.class.getName(), Context.MODE_PRIVATE).edit();
+
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < mAlarmAdapter.getCount(); i++) {
+            sb.append(mAlarmAdapter.getItem(i).getTime()).append(",");
+        }
+
+        String content = sb.toString().substring(0, sb.length()-1);
+
+        editor.putString(KEY_ALARM_LIST, content);
+
+        System.out.println(content);
+
+        editor.commit();
     }
 
     private Button mBtnAddAlarm;
     private ListView mLvAlarmList;
     private ArrayAdapter<AlarmDate> mAlarmAdapter;
+    private final static String KEY_ALARM_LIST = "alarm list";
 
     private static class AlarmDate {
 
