@@ -1,6 +1,8 @@
 package com.example.angluswang.clock;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +40,38 @@ public class TimerView extends LinearLayout {
         btnResume = (Button) findViewById(R.id.btnResume);
         btnReset = (Button) findViewById(R.id.btnReset);
 
+        etHour.setText("00");
+        etHour.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int value = Integer.parseInt(s.toString());
+
+                if (value >= 59) {
+                    etHour.setText("59");
+                }else if (value <= 0){
+                    etHour.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        etMin.setText("00");
+        etSec.setText("00");
+
+        btnStart.setVisibility(VISIBLE);
+        btnStart.setEnabled(false);
+        btnPause.setVisibility(GONE);
+        btnResume.setVisibility(GONE);
+        btnReset.setVisibility(GONE);
     }
 
     private EditText etHour, etMin, etSec;

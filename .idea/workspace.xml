@@ -11,10 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6803b36f-95b1-4e4f-912c-a2d4ae2645f2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/angluswang/clock/TimerView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/angluswang/clock/TimerView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/angluswang/clock/TimerView.java" />
     </list>
     <ignored path="Clock.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,14 +45,14 @@
       <file leaf-file-name="TimerView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/angluswang/clock/TimerView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+            <state relative-caret-position="279">
+              <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#370#371#0" expanded="true" />
-                <element signature="e#431#432#0" expanded="true" />
-                <element signature="e#468#469#0" expanded="true" />
+                <element signature="e#403#404#0" expanded="true" />
+                <element signature="e#433#434#0" expanded="true" />
+                <element signature="e#494#495#0" expanded="true" />
+                <element signature="e#531#532#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,10 +61,11 @@
       <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="75" column="51" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
+            <state relative-caret-position="1252">
+              <caret line="113" column="33" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
               <folding>
                 <element signature="e#2434#2454#0" expanded="true" />
+                <element signature="e#4773#5201#0" expanded="false" />
                 <element signature="e#5632#5647#0" expanded="true" />
                 <element signature="e#5953#5968#0" expanded="true" />
                 <element signature="e#6275#6291#0" expanded="true" />
@@ -2263,7 +2262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464093684532</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="计时器简单布局实现">
+      <created>1464096366304</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1464096366304</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2366,7 +2372,8 @@
     <MESSAGE value="修复了一些bug，成功设置闹钟并使闹钟能工作&#10;- bug1 删除所有闹钟时程序崩溃，原因：缓冲区内没有数据时，substring异常；&#10;- bug2 修改了闹钟的秒与毫秒数为0；&#10;- bug3 一些其他bug" />
     <MESSAGE value="修复功能，使闹钟只执行一次" />
     <MESSAGE value="闹钟执行的时候，打开一个新窗口并播放音乐" />
-    <option name="LAST_COMMIT_MESSAGE" value="闹钟执行的时候，打开一个新窗口并播放音乐" />
+    <MESSAGE value="计时器简单布局实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="计时器简单布局实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2415,6 +2422,7 @@
           <caret line="57" column="52" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
           <folding>
             <element signature="e#2434#2454#0" expanded="true" />
+            <element signature="e#4773#5201#0" expanded="false" />
             <element signature="e#5632#5647#0" expanded="true" />
             <element signature="e#5953#5968#0" expanded="true" />
             <element signature="e#6275#6291#0" expanded="true" />
@@ -2458,6 +2466,7 @@
           <caret line="57" column="52" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
           <folding>
             <element signature="e#2434#2454#0" expanded="true" />
+            <element signature="e#4773#5201#0" expanded="false" />
             <element signature="e#5632#5647#0" expanded="true" />
             <element signature="e#5953#5968#0" expanded="true" />
             <element signature="e#6275#6291#0" expanded="true" />
@@ -2498,6 +2507,7 @@
           <caret line="57" column="52" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
           <folding>
             <element signature="e#2434#2454#0" expanded="true" />
+            <element signature="e#4773#5201#0" expanded="false" />
             <element signature="e#5632#5647#0" expanded="true" />
             <element signature="e#5953#5968#0" expanded="true" />
             <element signature="e#6275#6291#0" expanded="true" />
@@ -2512,6 +2522,7 @@
           <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
           <folding>
             <element signature="e#2434#2454#0" expanded="true" />
+            <element signature="e#4773#5201#0" expanded="false" />
             <element signature="e#5632#5647#0" expanded="true" />
             <element signature="e#5953#5968#0" expanded="true" />
             <element signature="e#6275#6291#0" expanded="true" />
@@ -2533,6 +2544,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#2434#2454#0" expanded="true" />
+            <element signature="e#4773#5201#0" expanded="false" />
             <element signature="e#5632#5647#0" expanded="true" />
             <element signature="e#5953#5968#0" expanded="true" />
             <element signature="e#6275#6291#0" expanded="true" />
@@ -2708,10 +2720,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="75" column="51" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
+        <state relative-caret-position="1252">
+          <caret line="113" column="33" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
           <folding>
             <element signature="e#2434#2454#0" expanded="true" />
+            <element signature="e#4773#5201#0" expanded="false" />
             <element signature="e#5632#5647#0" expanded="true" />
             <element signature="e#5953#5968#0" expanded="true" />
             <element signature="e#6275#6291#0" expanded="true" />
@@ -2725,14 +2738,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/angluswang/clock/TimerView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state relative-caret-position="279">
+          <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#370#371#0" expanded="true" />
-            <element signature="e#431#432#0" expanded="true" />
-            <element signature="e#468#469#0" expanded="true" />
+            <element signature="e#403#404#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#531#532#0" expanded="true" />
           </folding>
         </state>
       </provider>
