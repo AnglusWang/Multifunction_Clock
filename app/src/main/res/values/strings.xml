@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Clock</string>
     <string name="btAddAlarm">添加闹钟</string>
+    <string name="play_song">Play song</string>
 </resources>
