@@ -56,6 +56,8 @@ public class TimerView extends LinearLayout {
                 }else if (value <= 0){
                     etHour.setText("0");
                 }
+
+                CheckToEnableBtnStart();
             }
 
             @Override
@@ -65,13 +67,69 @@ public class TimerView extends LinearLayout {
         });
 
         etMin.setText("00");
+        etMin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int value = Integer.parseInt(s.toString());
+
+                if (value >= 59) {
+                    etMin.setText("59");
+                }else if (value <= 0){
+                    etMin.setText("0");
+                }
+
+                CheckToEnableBtnStart();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         etSec.setText("00");
+        etSec.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int value = Integer.parseInt(s.toString());
+
+                if (value >= 59) {
+                    etSec.setText("59");
+                }else if (value <= 0){
+                    etSec.setText("0");
+                }
+
+                CheckToEnableBtnStart();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         btnStart.setVisibility(VISIBLE);
         btnStart.setEnabled(false);
         btnPause.setVisibility(GONE);
         btnResume.setVisibility(GONE);
         btnReset.setVisibility(GONE);
+    }
+
+    private void CheckToEnableBtnStart() {
+        btnStart.setEnabled(
+                Integer.parseInt(etHour.getText().toString()) > 0 ||
+                Integer.parseInt(etMin.getText().toString()) > 0 ||
+                Integer.parseInt(etSec.getText().toString()) > 0    );
     }
 
     private EditText etHour, etMin, etSec;
