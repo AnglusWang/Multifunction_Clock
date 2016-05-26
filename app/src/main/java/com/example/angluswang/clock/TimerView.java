@@ -2,6 +2,7 @@ package com.example.angluswang.clock;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.widget.Button;
@@ -49,12 +50,15 @@ public class TimerView extends LinearLayout {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int value = Integer.parseInt(s.toString());
 
-                if (value >= 59) {
-                    etHour.setText("59");
-                }else if (value <= 0){
-                    etHour.setText("0");
+                if (!TextUtils.isEmpty(s)) {
+                    int value = Integer.parseInt(s.toString());
+
+                    if (value > 59) {
+                        etHour.setText("59");
+                    }else if (value < 0){
+                        etHour.setText("0");
+                    }
                 }
 
                 CheckToEnableBtnStart();
@@ -75,12 +79,15 @@ public class TimerView extends LinearLayout {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int value = Integer.parseInt(s.toString());
 
-                if (value >= 59) {
-                    etMin.setText("59");
-                }else if (value <= 0){
-                    etMin.setText("0");
+                if (!TextUtils.isEmpty(s)) {
+                    int value = Integer.parseInt(s.toString());
+
+                    if (value > 59) {
+                        etMin.setText("59");
+                    }else if (value < 0){
+                        etMin.setText("0");
+                    }
                 }
 
                 CheckToEnableBtnStart();
@@ -101,12 +108,15 @@ public class TimerView extends LinearLayout {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int value = Integer.parseInt(s.toString());
 
-                if (value >= 59) {
-                    etSec.setText("59");
-                }else if (value <= 0){
-                    etSec.setText("0");
+                if (!TextUtils.isEmpty(s)) {
+                    int value = Integer.parseInt(s.toString());
+
+                    if (value > 59) {
+                        etSec.setText("59");
+                    }else if (value < 0){
+                        etSec.setText("0");
+                    }
                 }
 
                 CheckToEnableBtnStart();
@@ -127,9 +137,9 @@ public class TimerView extends LinearLayout {
 
     private void CheckToEnableBtnStart() {
         btnStart.setEnabled(
-                Integer.parseInt(etHour.getText().toString()) > 0 ||
-                Integer.parseInt(etMin.getText().toString()) > 0 ||
-                Integer.parseInt(etSec.getText().toString()) > 0    );
+                (!TextUtils.isEmpty(etHour.getText()) && Integer.parseInt(etHour.getText().toString()) > 0) ||
+                (!TextUtils.isEmpty(etMin.getText()) && Integer.parseInt(etMin.getText().toString()) > 0) ||
+                (!TextUtils.isEmpty(etSec.getText()) && Integer.parseInt(etSec.getText().toString()) > 0)  );
     }
 
     private EditText etHour, etMin, etSec;
