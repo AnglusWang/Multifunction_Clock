@@ -18,8 +18,18 @@ public class MainActivity extends AppCompatActivity {
         mTabHost.addTab(mTabHost.newTabSpec("tabAlarm").setIndicator("闹钟").setContent(R.id.tabAlarm));
         mTabHost.addTab(mTabHost.newTabSpec("tabTimer").setIndicator("计时器").setContent(R.id.tabTimer));
         mTabHost.addTab(mTabHost.newTabSpec("tabStopWatch").setIndicator("秒表").setContent(R.id.tabStopWatch));
+
+        mStopWatchView = (StopWatchView) findViewById(R.id.tabStopWatch);
     }
 
+    @Override
+    protected void onDestroy() {
+        mStopWatchView.onDestrory();
+
+        super.onDestroy();
+    }
+
+    private StopWatchView mStopWatchView;
     private TabHost mTabHost;
 
 }
