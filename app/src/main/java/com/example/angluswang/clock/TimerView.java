@@ -1,13 +1,20 @@
 package com.example.angluswang.clock;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Jeson on 2016/5/24.
@@ -40,6 +47,13 @@ public class TimerView extends LinearLayout {
         btnPause = (Button) findViewById(R.id.btnPause);
         btnResume = (Button) findViewById(R.id.btnResume);
         btnReset = (Button) findViewById(R.id.btnReset);
+
+        btnStart.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTimer();
+            }
+        });
 
         etHour.setText("00");
         etHour.addTextChangedListener(new TextWatcher() {
@@ -142,6 +156,58 @@ public class TimerView extends LinearLayout {
                 (!TextUtils.isEmpty(etSec.getText()) && Integer.parseInt(etSec.getText().toString()) > 0)  );
     }
 
+    private void startTimer() {
+
+        allTimerCount = Integer.parseInt(etHour.getText().toString())*60*60 +
+                Integer.parseInt(etMin.getText().toString())*60 +
+                Integer.parseInt(etSec.getText().toString());
+        if (mTimerTask == null) {
+            mTimerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    allTimerCount --;
+
+                    if (allTimerCount <= 0) {
+
+                        mhandler.sendEmptyMessage(MSG_WHAT_TIME_IS_UP);
+                        stopTimer();
+                    }
+                }
+            };
+
+            mTimer.schedule(mTimerTask, 1000, 1000);
+
+            btnStart.setVisibility(GONE);
+            btnPause.setVisibility(VISIBLE);
+            btnReset.setVisibility(VISIBLE);
+        }
+    }
+
+    private void stopTimer() {
+        if ( mTimerTask != null) {
+            mTimerTask.cancel();
+            mTimerTask = null;
+        }
+    }
+
+    private Handler mhandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_WHAT_TIME_IS_UP:
+                    new AlertDialog.Builder(getContext()).setTitle("Time is up")
+                            .setMessage("Time is up").setNegativeButton("Cancel", null).show();
+                            break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private static final int MSG_WHAT_TIME_IS_UP = 1;
+    private int allTimerCount = 0;
+    private Timer mTimer = new Timer();
+    private TimerTask mTimerTask = null;
     private EditText etHour, etMin, etSec;
     private Button btnStart, btnPause, btnResume, btnReset;
 
