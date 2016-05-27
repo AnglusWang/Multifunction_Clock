@@ -44,14 +44,56 @@ public class TimerView extends LinearLayout {
         etSec = (EditText) findViewById(R.id.etSec);
 
         btnStart = (Button) findViewById(R.id.btnStart);
-        btnPause = (Button) findViewById(R.id.btnPause);
-        btnResume = (Button) findViewById(R.id.btnResume);
-        btnReset = (Button) findViewById(R.id.btnReset);
-
         btnStart.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 startTimer();
+
+                btnStart.setVisibility(GONE);
+                btnPause.setVisibility(VISIBLE);
+                btnReset.setVisibility(VISIBLE);
+            }
+        });
+
+        btnPause = (Button) findViewById(R.id.btnPause);
+        btnPause.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                stopTimer();
+
+                btnPause.setVisibility(GONE);
+                btnResume.setVisibility(VISIBLE);
+            }
+        });
+
+        btnResume = (Button) findViewById(R.id.btnResume);
+        btnResume.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startTimer();
+
+                btnPause.setVisibility(VISIBLE);
+                btnResume.setVisibility(GONE);
+            }
+        });
+
+        btnReset = (Button) findViewById(R.id.btnReset);
+        btnReset.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                stopTimer();
+
+                etHour.setText("00");
+                etMin.setText("00");
+                etSec.setText("00");
+
+                btnPause.setVisibility(GONE);
+                btnResume.setVisibility(GONE);
+                btnReset.setVisibility(GONE);
+                btnStart.setVisibility(VISIBLE);
             }
         });
 
@@ -167,6 +209,8 @@ public class TimerView extends LinearLayout {
                 public void run() {
                     allTimerCount --;
 
+                    mhandler.sendEmptyMessage(MSG_WHAT_TIME_TICK);
+
                     if (allTimerCount <= 0) {
 
                         mhandler.sendEmptyMessage(MSG_WHAT_TIME_IS_UP);
@@ -176,10 +220,6 @@ public class TimerView extends LinearLayout {
             };
 
             mTimer.schedule(mTimerTask, 1000, 1000);
-
-            btnStart.setVisibility(GONE);
-            btnPause.setVisibility(VISIBLE);
-            btnReset.setVisibility(VISIBLE);
         }
     }
 
@@ -194,10 +234,26 @@ public class TimerView extends LinearLayout {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
+                case MSG_WHAT_TIME_TICK:
+
+                    int hour = allTimerCount/60/60;
+                    int min = (allTimerCount/60)%60;
+                    int sec = allTimerCount%60;
+
+                    etHour.setText(hour + "");
+                    etMin.setText(min + "");
+                    etSec.setText(sec + "");
+
+                    break;
                 case MSG_WHAT_TIME_IS_UP:
                     new AlertDialog.Builder(getContext()).setTitle("Time is up")
                             .setMessage("Time is up").setNegativeButton("Cancel", null).show();
-                            break;
+
+                    btnPause.setVisibility(GONE);
+                    btnResume.setVisibility(GONE);
+                    btnReset.setVisibility(GONE);
+                    btnStart.setVisibility(VISIBLE);
+                    break;
                 default:
                     break;
             }
@@ -205,6 +261,8 @@ public class TimerView extends LinearLayout {
     };
 
     private static final int MSG_WHAT_TIME_IS_UP = 1;
+    private static final int MSG_WHAT_TIME_TICK = 2;
+
     private int allTimerCount = 0;
     private Timer mTimer = new Timer();
     private TimerTask mTimerTask = null;
